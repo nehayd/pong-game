@@ -5,14 +5,18 @@ from ball import Ball
 from scoreboard import Scoreboard
 import time
 
+screen_width = 800
+screen_height = 600
+r_paddle_position = (380, 0)
+l_paddle_position = (-380, 0)
 screen = Screen()
 screen.bgcolor("black")
-screen.setup(width=800, height=600)
+screen.setup(width=screen_width, height=screen_height)
 screen.title("Pong")
 screen.tracer(0)
 
-r_paddle = Paddle((350, 0))
-l_paddle = Paddle((-350, 0))
+r_paddle = Paddle(r_paddle_position)
+l_paddle = Paddle(l_paddle_position)
 ball = Ball()
 scoreboard = Scoreboard()
 
@@ -33,7 +37,7 @@ while game_is_on:
         ball.bounce_y()
         
     #Detect collision with paddle
-    if ball.distance(r_paddle) < 50 and ball.xcor() > 320 or ball.distance(l_paddle) < 50 and ball.xcor() < -320:
+    if ball.distance(r_paddle) < 40 and ball.xcor() > 340 or ball.distance(l_paddle) < 40 and ball.xcor() < -340:
         ball.bounce_x()
     
     #Detect R paddle misses
